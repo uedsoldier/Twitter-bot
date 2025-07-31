@@ -30,3 +30,6 @@ class RedisStore:
     
     def incr(self, key):
         return self.r.incr(key)
+    
+    def smembers(self, key):
+        return self.r.smembers(key)
