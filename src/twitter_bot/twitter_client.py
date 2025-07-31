@@ -10,7 +10,7 @@ class TwitterClient:
             access_token_secret=access_token_secret
         )
 
-    def publicar_tweet(self, texto):
+    def publish_tweet(self, texto):
         try:
             response = self.client.create_tweet(text=texto)
             print(f'Tweet publicado: https://twitter.com/user/status/{response.data["id"]}')
