@@ -12,9 +12,9 @@ class PhraseManager:
 
     def generate(self, dias):
 
-        phrases = list(self.store.smembers(self.key_phrases))
-        used_phrases = self.store.smembers(self.key_used)
-        available_phrases = list(set(phrases) - used_phrases)
+        phrases = self.store.smembers(self.key_phrases)          # set de bytes
+        used_phrases = self.store.smembers(self.key_used)    # set de bytes
+        available_phrases = list(phrases - used_phrases)
 
         if not available_phrases:
             self.store.delete(self.key_used)
