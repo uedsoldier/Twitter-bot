@@ -14,17 +14,17 @@ from twitter_bot.config import (
 class TwitterBot:
 
     def __init__(self):
-        self.redis = RedisStore()
-        self.phrase_manager = PhraseManager()
+        self.redis_store = RedisStore()
+        self.phrase_manager = PhraseManager(self.redis_store)
         self.twitter_client = TwitterClient(
             access_token=ACCESS_TOKEN,
             access_token_secret=ACCESS_TOKEN_SECRET,
             consumer_key=CONSUMER_KEY,
             consumer_secret=CONSUMER_SECRET,
         )
-        self.event_tracker = EventTracker(self.redis)
+        self.event_tracker = EventTracker(self.redis_store)
 
     def run(self):
         days = self.event_tracker.increment_days_if_no_event()
-        message = self.phrase_manager.generate(days, redis_store=self.redis)
+        message = self.phrase_manager.generate(days, redis_store=self.redis_store)
         self.twitter_client.publish_tweet(message)
