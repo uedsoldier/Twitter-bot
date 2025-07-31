@@ -1,5 +1,7 @@
 import random
 import redis
+
+
 class PhraseManager:
 
     def __init__(self):
@@ -29,6 +31,23 @@ class PhraseManager:
             'Ya son {dias} días de que Baños hace lo mismo que siempre: nada... pero peor.',
             'A estas alturas ({dias} días), Baños ya debería tener prohibido pisar Coapa sin pedir perdón de rodillas.',
             'Van {dias} días viendo cómo Baños convierte al América en un circo sin gracia. Y él es el payaso jefe.',
+            'Van {dias} días desde que Baños sigue creyendo que esto es la Liga Balón de Oro.',
+            'Emilio, despierta: {dias} días de tortura con Santiago Baños a cargo.',
+            '{dias} días sin dignidad deportiva. Gracias, Baños.',
+            'Con {dias} días de Baños, Jardine ya merece indemnización por daños psicológicos.',
+            'Azcárraga lleva {dias} días creyendo que Baños es competente. Eso es lealtad.',
+            'Desde hace {dias} días, Baños administra al América como si fuera su Fantasy.',
+            '{dias} días y Baños sigue. ¿Lo están clonando o qué chingados?',
+            'Que alguien le diga a Baños que el América no es su pasantía eterna. Van {dias} días.',
+            '¿Quién tiene más vidas, un gato o Baños en el América? Van {dias} días.',
+            '{dias} días sin que Baños pida perdón. Candidato al Guinness de cinismo.',
+            'Ya son {dias} días. Si Baños fuera jugador, ya lo habrían mandado a la Sub-20.',
+            'Santiago Baños, {dias} días sin aportar algo útil. Nuevo récord continental.',
+            'Con {dias} días de Baños, el América ya debería considerarse equipo resiliente.',
+            'Hay rehenes que han durado menos cautivos que lo que Baños lleva en Coapa: {dias} días.',
+            'Van {dias} días y Baños no se va. ¿Es esto una prueba divina?',
+            'La dignidad del americanismo lleva {dias} días secuestrada por Baños.',
+            'Que alguien avise a Iñárritu: {dias} días con Baños, y el club ya parece shitBas.',
         ]
         self.total_phrases = len(self.phrases)
         self.RETRY_ATTEMPTS = 5
@@ -46,9 +65,8 @@ class PhraseManager:
             if redis_store is None or not redis_store.sismember('used_phrases', phrase):
                 if redis_store is not None:
                     redis_store.sadd('used_phrases', phrase)
-                return phrase.format(dias=dias)+self.hashtag
+                return phrase.format(dias=dias) + self.hashtag
             intentos += 1
 
         # Si no hay redis_store o después de los intentos establecidos, devolver cualquiera
-        return random.choice(self.phrases).format(dias=dias)+self.hashtag
-        
+        return random.choice(self.phrases).format(dias=dias) + self.hashtag
