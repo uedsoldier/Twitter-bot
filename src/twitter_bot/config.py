@@ -1,0 +1,13 @@
+import os 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+REDIS_HOST = os.getenv('REDIS_HOST')
+REDIS_PORT = int(os.getenv('REDIS_PORT'))
+REDIS_PASSWORD = os.getenv('REDIS_PASSWORD', None)
+
+CONSUMER_KEY= os.getenv('CONSUMER_KEY') 
+CONSUMER_SECRET= os.getenv('CONSUMER_SECRET')
+ACCESS_TOKEN= os.getenv('ACCESS_TOKEN')
+ACCESS_TOKEN_SECRET= os.getenv('ACCESS_TOKEN_SECRET')
