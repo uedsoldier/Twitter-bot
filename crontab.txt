@@ -1,0 +1,2 @@
+0 2 * * * root /app/run_bot.sh >> /var/log/cron.log 2>&1
+0 14 * * * root /app/run_bot.sh >> /var/log/cron.log 2>&1
