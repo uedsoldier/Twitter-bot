@@ -51,7 +51,7 @@ class PhraseManager:
         ]
         self.total_phrases = len(self.phrases)
         self.RETRY_ATTEMPTS = 5
-        self.hashtag = ' #FueraBaños'
+        self.hashtag = ' #FueraBaños  #ChingaTuMadreBaños'
 
     def generate(self, dias, redis_store: redis.Redis = None):
         if redis_store:
