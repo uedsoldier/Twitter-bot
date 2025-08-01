@@ -7,6 +7,15 @@ sys.path.insert(0, ruta_src)
 
 from twitter_bot.phrase_manager import PhraseManager
 import redis
+from dotenv import load_dotenv
+
+load_dotenv()
+REDIS_HOST  = os.getenv('REDIS_HOST','localhost')
+REDIS_PORT = int(os.getenv('REDIS_PORT','6379'))
+REDIS_USER = os.getenv('REDIS_USER', 'default')
+REDIS_PASSWORD = os.getenv('REDIS_PASSWORD', '')
+
+r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, username=REDIS_USER,password=REDIS_PASSWORD,decode_responses=True)
 
 phrases_to_load = [
     "Van {dias} días con Baños ahí sentado rascándose los huevos mientras el América se arrastra.",
@@ -53,7 +62,6 @@ phrases_to_load = [
     "Que alguien avise a Iñárritu: {dias} días con Baños, y el club ya parece shitBas.",
 ]
 
-r = redis.Redis(host="192.168.196.47", port=REDIS_PORT, decode_responses=True)
 pm = PhraseManager(redis_store=r)
 
 pm.load_phrases(phrases_to_load)
