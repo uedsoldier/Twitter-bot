@@ -39,13 +39,18 @@ class BootstrapCommand(Command):
         else:
             activate_cmd = 'source venv/bin/activate'
             print(f'  {activate_cmd}')
+            print('  # O alternativamente:')
+            print('  . venv/bin/activate')
+            print('\nPara VS Code:')
+            print('  1. Presiona Ctrl+Shift+` para abrir una nueva terminal')
+            print('  2. Ejecuta uno de los comandos anteriores')
+            print('  3. O selecciona el intérprete de Python del venv con Ctrl+Shift+P -> "Python: Select Interpreter"')
         # Optionally activate in a new shell
         if self.activate:
             print('Launching a new shell with the venv activated...')
-            if os.name == 'nt':
-                subprocess.call(['cmd.exe', '/K', activate_cmd])
-            else:
-                subprocess.call([os.environ.get('SHELL', '/bin/bash'), '-i', '-c', activate_cmd])
+            print("\nPara activar el entorno virtual en VS Code:")
+            print("1. Abre una nueva terminal (Ctrl+Shift+`)")
+            print("2. Ejecuta: ./activate_venv.sh")
 
 # You can add more custom commands below, e.g., for testing or cleaning:
 # class TestCommand(Command): ...
