@@ -53,7 +53,7 @@ phrases_to_load = [
     "Que alguien avise a Iñárritu: {dias} días con Baños, y el club ya parece shitBas.",
 ]
 
-r = redis.Redis(host="192.168.196.47", port=6379, decode_responses=True)
+r = redis.Redis(host="192.168.196.47", port=REDIS_PORT, decode_responses=True)
 pm = PhraseManager(redis_store=r)
 
 pm.load_phrases(phrases_to_load)

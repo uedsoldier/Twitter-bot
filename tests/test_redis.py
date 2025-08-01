@@ -1,7 +1,12 @@
 import redis
 from datetime import datetime
+from dotenv import load_dotenv
+import os
 
-r = redis.Redis(host='192.168.1.4', port=6379, decode_responses=True)
+load_dotenv()
+REDIS_HOST  = os.getenv('REDIS_HOST')
+REDIS_PORT = int(os.getenv('REDIS_PORT'))
+r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 fecha_inicio_conteo_banos_str = r.get('fecha_inicio_conteo_banos')
 fecha_inicio_conteo_banos = datetime.strptime(fecha_inicio_conteo_banos_str, '%Y-%m-%d')

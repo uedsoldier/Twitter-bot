@@ -6,10 +6,14 @@ ruta_src = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'))
 sys.path.insert(0, ruta_src)
 from twitter_bot.phrase_manager import PhraseManager
 import redis
+from dotenv import load_dotenv
 
 pm = PhraseManager()
 
-r = redis.Redis(host='192.168.1.4', port=6379, decode_responses=True)
+load_dotenv()
+REDIS_HOST  = os.getenv('REDIS_HOST')
+REDIS_PORT = int(os.getenv('REDIS_PORT'))
+r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 dias = 10  # Example number of days
 
