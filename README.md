@@ -70,7 +70,7 @@ Todo el contenido generado y publicado por el bot representa una forma de críti
 
 Si alguien se siente ofendido por el contenido, se recomienda respirar profundo, reírse un poco y seguir con su día.
 
-☠️ **Mensaje final**
+## ☠️ **Mensaje final**
 
 CHTPM, Santiago Baños.
 (Frase institucional del proyecto. No discutimos esta parte.)
