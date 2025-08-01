@@ -20,7 +20,7 @@ class BootstrapCommand(Command):
         pass
 
     def run(self):
-        venv_dir = '.venv'
+        venv_dir = 'venv'
         python_exe = sys.executable
         # Create venv if it doesn't exist
         if not os.path.isdir(venv_dir):
@@ -34,10 +34,10 @@ class BootstrapCommand(Command):
         subprocess.check_call([pip_exe, 'install', '-r', 'requirements.txt'])
         print('Setup complete. To activate the venv:')
         if os.name == 'nt':
-            activate_cmd = r'.venv\Scripts\activate'
+            activate_cmd = r'venv\Scripts\activate'
             print(f'  {activate_cmd}')
         else:
-            activate_cmd = 'source .venv/bin/activate'
+            activate_cmd = 'source venv/bin/activate'
             print(f'  {activate_cmd}')
         # Optionally activate in a new shell
         if self.activate:
