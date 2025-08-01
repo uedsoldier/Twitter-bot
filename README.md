@@ -69,7 +69,6 @@ Todo el contenido generado y publicado por el bot representa una forma de críti
 **Este repositorio no está afiliado, respaldado ni aprobado por el Club América, Twitter/X ni ninguna figura pública mencionada.**
 
 Si alguien se siente ofendido por el contenido, se recomienda respirar profundo, reírse un poco y seguir con su día.
-"""
 
 ☠️ **Mensaje final**
 
