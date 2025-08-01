@@ -8,8 +8,6 @@ from twitter_bot.phrase_manager import PhraseManager
 import redis
 from dotenv import load_dotenv
 
-pm = PhraseManager()
-
 load_dotenv()
 REDIS_HOST  = os.getenv('REDIS_HOST','localhost')
 REDIS_PORT = int(os.getenv('REDIS_PORT','6379'))
@@ -18,7 +16,9 @@ REDIS_PASSWORD = os.getenv('REDIS_PASSWORD', '')
 
 r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, username=REDIS_USER,password=REDIS_PASSWORD,decode_responses=True)
 
+pm = PhraseManager(redis_store=r)
+
 dias = 10  # Example number of days
 
-phrase = pm.generate(dias, redis_store=r)
+phrase = pm.generate(dias)
 print(phrase)
