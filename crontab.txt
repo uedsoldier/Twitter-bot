@@ -1,3 +1,3 @@
-*/30 * * * * /bin/sh -c 'echo "Heartbeat" >> /var/log/cron_test.log 2>&1'
+*/30 * * * * /bin/sh -c 'echo "$(date) Twitter bot heartbeat" >> /var/log/heartbeat.log 2>&1'
 0 10 * * * /bin/bash -l /app/run_bot.sh >> /var/log/twitter_bot.log 2>&1
 0 22 * * * /bin/bash -l /app/run_bot.sh >> /var/log/twitter_bot.log 2>&1
