@@ -43,9 +43,8 @@ Si el bot no publica por error o si Redis se cae, todo queda registrado.
 ## 📋 **Frases**
 Las frases están en Redis y se rotan constantemente. Algunas son simples. Otras, groseras. Todas absolutamente necesarias.
 
-
 ## **🛠️ En desarrollo**
-Francamente creo que cumple y hasta ahí se quedará el veneno. 🐍
+Francamente creo que cumple y hasta ahí se quedará el veneno. 🐍. Falta un poco de documentación que poco a poco irá apareciendo.
 
 📚 **Tutorial básico**
 Si quieres entender cómo montar esto desde cero (o estás aprendiendo), puedes ver este [tutorial básico en YouTube](https://www.youtube.com/watch?v=xsSXL5iuzDg)
