@@ -36,7 +36,7 @@ Todo el proyecto se ejecuta dentro de un contenedor Debian slim con Python 3.13,
 
 10:00 y 22:00 (Hora de Ciudad de México): se publica un tweet.
 
-Cada 15 minutos: el bot escribe un heartbeat en su log para confirmar que sigue vivo.
+Cada 30 minutos: el bot escribe un heartbeat en su log para confirmar que sigue vivo.
 
 Si el bot no publica por error o si Redis se cae, todo queda registrado.
 
