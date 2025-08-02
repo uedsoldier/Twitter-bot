@@ -5,6 +5,10 @@ services:
     restart: unless-stopped
     env_file: .env
     volumes:
-      - ./logs:/var/log
+      - twitter_bot_logs:/var/log
     environment:
       - TZ=America/Mexico_City
+
+volumes:
+  twitter_bot_logs:
+    driver: local
