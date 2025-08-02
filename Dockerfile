@@ -30,7 +30,7 @@ RUN dos2unix /etc/cron.d/bot-cron && \
     crontab /etc/cron.d/bot-cron
 
 # Archivos de log
-RUN touch /var/log/cron_test.log /var/log/twitter_bot.log /var/log/heartbeat.log && \
+RUN /var/log/twitter_bot.log /var/log/heartbeat.log && \
     chmod 666 /var/log/*.log
 
 # Healthcheck docker
