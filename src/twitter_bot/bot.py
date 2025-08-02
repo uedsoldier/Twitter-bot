@@ -25,6 +25,6 @@ class TwitterBot:
         self.event_tracker = EventTracker(self.redis_store)
 
     def run(self):
-        days = self.event_tracker.increment_days_if_no_event()
+        days = self.event_tracker.compute_days_since_start()
         message = self.phrase_manager.generate(days)
         self.twitter_client.publish_tweet(message)
