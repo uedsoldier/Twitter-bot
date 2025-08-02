@@ -9,7 +9,7 @@ Además, ¿quién no quiere automatizar su odio deportivo?
 
 ## 🔧 **¿Cómo funciona?**
 
-Cada cierto tiempo —específicamente dos veces al día—, el bot se despierta, escoge una frase prearmada (o genera una nueva si se le acaban), y publica un tuit bien dirigido a la cabeza del América.  
+Cada cierto tiempo —específicamente cuatro veces al día—, el bot se despierta, escoge una frase prearmada (o genera una nueva si se le acaban), y publica un tuit bien dirigido a la cabeza del América.  
 Y si nadie lo detiene, lo seguirá haciendo... **para siempre**.
 
 - Las frases se gestionan desde Redis
@@ -34,9 +34,9 @@ Todo el proyecto se ejecuta dentro de un contenedor Debian slim con Python 3.13,
 
 ## ⏰ **Tareas programadas**
 
-10:00 y 22:00 (Hora de Ciudad de México): se publica un tweet.
+4:00, 10:00, 16:00 y 22:00 (Hora de Ciudad de México): se publica un tweet.
 
-Cada 30 minutos: el bot escribe un heartbeat en su log para confirmar que sigue vivo.
+Cada 30 minutos: el bot efectúa un healthcheck confirmar que sigue vivo.
 
 Si el bot no publica por error o si Redis se cae, todo queda registrado.
 

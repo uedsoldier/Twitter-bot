@@ -33,5 +33,9 @@ RUN dos2unix /etc/cron.d/bot-cron && \
 RUN touch /var/log/cron_test.log /var/log/twitter_bot.log /var/log/heartbeat.log && \
     chmod 666 /var/log/*.log
 
+# Healthcheck docker
+HEALTHCHECK --interval=15m --timeout=10s --start-period=5s --retries=3 \
+  CMD python3 /app/src/healthcheck.py || exit 1
+
 # Corre cron en primer plano
 CMD ["cron", "-f"]

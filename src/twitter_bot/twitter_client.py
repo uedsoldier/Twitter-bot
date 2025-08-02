@@ -9,12 +9,20 @@ class TwitterClient:
             access_token=access_token,
             access_token_secret=access_token_secret
         )
+    
+    def get_me(self):
+        try:
+            user = self.client.get_me()
+            return user.data
+        except Exception as e:
+            print(f'Error getting user: {e}')
+            return None
 
     def publish_tweet(self, texto):
         try:
             response = self.client.create_tweet(text=texto)
-            print(f'Tweet publicado: https://twitter.com/user/status/{response.data["id"]}')
+            print(f'Published tweet: https://twitter.com/user/status/{response.data["id"]}')
             return response
         except Exception as e:
-            print(f'Error al publicar tweet: {e}')
+            print(f'Error publishing tweet: {e}')
             return None

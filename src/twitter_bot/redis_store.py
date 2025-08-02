@@ -1,11 +1,12 @@
 import redis
-from twitter_bot.config import REDIS_HOST, REDIS_PORT, REDIS_PASSWORD
+from twitter_bot.config import REDIS_HOST, REDIS_PORT, REDIS_USER, REDIS_PASSWORD
 
 class RedisStore:
     def __init__(self):
         self.r = redis.Redis(
             host=REDIS_HOST,
             port=REDIS_PORT,
+            username=REDIS_USER,
             password=REDIS_PASSWORD,
             decode_responses=True
         )
@@ -33,3 +34,6 @@ class RedisStore:
     
     def smembers(self, key):
         return self.r.smembers(key)
+    
+    def ping(self):
+        return self.r.ping()
