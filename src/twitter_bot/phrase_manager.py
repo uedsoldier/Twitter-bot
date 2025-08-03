@@ -8,7 +8,7 @@ class PhraseManager:
         self.store = redis_store
         self.key_phrases = key_phrases
         self.key_used = key_used
-        self.hashtag = ' #FueraBaños  #ChingaTuMadreBaños'
+        self.hashtag = self.store.get('hashtags_to_append')
 
     def generate(self, dias):
 
