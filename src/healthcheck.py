@@ -29,15 +29,11 @@ def check_env():
     for var in required_vars:
         if not os.getenv(var):
             missing.append(var)
-            logger.error(f'{HEALTHCHECK_STR} ❌ Variable {var} is missing.')
-        else:
-            logger.info(f'{HEALTHCHECK_STR} ✅ {var} loaded.')    
-
     if missing:
-        logger.error('{HEALTHCHECK_STR} ERROR: Critical variables are missing.')
+        logger.error(f'{HEALTHCHECK_STR} ERROR: Critical variables are missing: {", ".join(missing)}')
         sys.exit(1)
     else:
-        logger.info('{HEALTHCHECK_STR} All required variables are loaded.')
+        logger.info(f'{HEALTHCHECK_STR} All required variables are loaded.')
 
 def check_redis():
     logger.info(f'{HEALTHCHECK_STR} Checking Redis connection...')
