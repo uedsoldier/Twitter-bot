@@ -59,8 +59,13 @@ def check_twitter():
             consumer_key=os.getenv('CONSUMER_KEY'),
             consumer_secret=os.getenv('CONSUMER_SECRET')
         )
-        logger.info(f'User data: {twitter_client.get_me()}')
-        logger.info('{HEALTHCHECK_STR} ✅ Twitter API connection is healthy.')
+        user_info = twitter_client.get_me()
+        if 'error' in user_info:
+            logger.error(f'{HEALTHCHECK_STR} ❌ Error getting user info: {user_info["error"]}')
+            sys.exit(1)
+        else:
+            logger.info(f'{HEALTHCHECK_STR} User info retrieved successfully: {user_info}')
+        logger.info(f'{HEALTHCHECK_STR} ✅ Twitter API connection is healthy.')
     except Exception as e:
         logger.error(f'{HEALTHCHECK_STR} ❌ Error connecting to Twitter API: {e}.')
         sys.exit(1)
