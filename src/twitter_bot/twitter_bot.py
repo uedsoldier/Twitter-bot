@@ -2,6 +2,7 @@ from twitter_bot.redis_store import RedisStore
 from twitter_bot.phrase_manager import PhraseManager
 from twitter_bot.twitter_client import TwitterClient
 from twitter_bot.event_tracker import EventTracker
+from twitter_bot.log_manager import LogManager
 
 from twitter_bot.config import (
     CONSUMER_KEY,
@@ -23,8 +24,14 @@ class TwitterBot:
             consumer_secret=CONSUMER_SECRET,
         )
         self.event_tracker = EventTracker(self.redis_store)
+        self.logger = LogManager.get_logger(__name__)
 
-    def run(self):
+    def run(self): 
         days = self.event_tracker.compute_days_since_start()
         message = self.phrase_manager.generate(days)
-        self.twitter_client.publish_tweet(message)
+        response = self.twitter_client.publish_tweet(message)
+
+        if 'error' in response:
+            self.logger.error(f'Error publishing tweet: {response['error']}')
+        else:
+            self.logger.info(f'Published tweet: https://twitter.com/user/status/{response.data["id"]}')
