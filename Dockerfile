@@ -29,10 +29,6 @@ RUN dos2unix /etc/cron.d/bot-cron && \
     chmod 644 /etc/cron.d/bot-cron && \
     crontab /etc/cron.d/bot-cron
 
-# Archivos de log
-RUN touch /var/log/twitter_bot.log /var/log/heartbeat.log && \
-    chmod 666 /var/log/*.log
-
 # Healthcheck docker
 HEALTHCHECK --interval=15m --timeout=10s --start-period=5s --retries=3 \
   CMD python3 /app/src/healthcheck.py || exit 1
