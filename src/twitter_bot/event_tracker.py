@@ -2,7 +2,7 @@ from datetime import datetime
 from twitter_bot.redis_store import RedisStore
 
 class EventTracker:
-    def __init__(self, redis_store: RedisStore, key_start_date='fecha_inicio_conteo_banos'):
+    def __init__(self, redis_store: RedisStore, key_start_date='initial_date'):
         self.store = redis_store
         self.key_start_date = key_start_date
 
