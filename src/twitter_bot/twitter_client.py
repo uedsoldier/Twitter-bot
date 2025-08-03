@@ -15,14 +15,10 @@ class TwitterClient:
             user = self.client.get_me()
             return user.data
         except Exception as e:
-            print(f'Error getting user: {e}')
-            return None
+            return {"error": str(e)}
 
     def publish_tweet(self, texto):
         try:
-            response = self.client.create_tweet(text=texto)
-            print(f'Published tweet: https://twitter.com/user/status/{response.data["id"]}')
-            return response
+            return self.client.create_tweet(text=texto)
         except Exception as e:
-            print(f'Error publishing tweet: {e}')
-            return None
+            return {"error": str(e)}
