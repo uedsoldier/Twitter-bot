@@ -13,9 +13,6 @@ def main():
     r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, username=REDIS_USER,password=REDIS_PASSWORD,decode_responses=True)
 
     frases = [
-        'Van {dias} días con Baños ahí sentado...',
-        'Baños no hace nada útil desde hace {dias} días.',
-        'Ya son {dias} días de desastre con Baños.',
     ]
 
     # Simulamos días para formatear frases
@@ -24,14 +21,14 @@ def main():
     for frase_tpl in frases:
         frase = frase_tpl.format(dias=dias)
         if r.sismember('used_phrases', frase):
-            print(f'Frase ya usada: "{frase}"')
+            print(f'Phrase already used: "{frase}"')
         else:
-            print(f'Frase nueva, agregando: "{frase}"')
+            print(f'New phrase, adding: "{frase}"')
             r.sadd('used_phrases', frase)
 
     # Mostrar todas las frases usadas
     usadas = r.smembers('used_phrases')
-    print('\nFrases almacenadas en Redis:')
+    print('\nPhrases stored in redis:')
     for f in usadas:
         print(f'- {f}')
 
