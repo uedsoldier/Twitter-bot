@@ -25,9 +25,7 @@ class PhraseManager:
         return phrase.format(dias=dias) + self.hashtag
 
     def load_phrases(self, phrases: list):
-        if self.store.scard(self.key_phrases) == 0:
-            for phrase in phrases:
-                self.store.sadd(self.key_phrases, phrase)
-            print(f'Phrases loaded into Redis: {len(phrases)}')
-        else:
-            print('Phrases already loaded into Redis, skipping.')
+        for phrase in phrases:
+            self.store.sadd(self.key_phrases, phrase)
+        print(f'Phrases loaded into Redis: {len(phrases)}')
+
