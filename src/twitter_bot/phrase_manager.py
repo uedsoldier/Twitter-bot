@@ -27,5 +27,4 @@ class PhraseManager:
     def load_phrases(self, phrases: list):
         for phrase in phrases:
             self.store.sadd(self.key_phrases, phrase)
-        print(f'Phrases loaded into Redis: {len(phrases)}')
 
