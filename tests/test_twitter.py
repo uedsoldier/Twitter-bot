@@ -15,5 +15,5 @@ client = tweepy.Client(
     access_token_secret=ACCESS_TOKEN_SECRET
 )
 
-tweet_text = 'Primera publicación automática con el #FueraBaños, la puta madre!!'
+tweet_text = 'Primera publicación automática desde Python usando Tweepy! #Python #Tweepy'
 client.create_tweet(text=tweet_text)
