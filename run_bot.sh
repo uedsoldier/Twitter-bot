@@ -12,10 +12,10 @@ set +a
 cd /app/src || exit 1
 
 # Log start with timestamp
-echo "[$(date)] Starting bot execution..." >> /var/log/twitter_bot.log 2>&1
+echo "[$(date)] Starting bot execution..."
 
 # Run the Python script with full path
-/usr/local/bin/python main.py >> /var/log/twitter_bot.log 2>&1
+/usr/local/bin/python main.py
 
 # Log completion
-echo "[$(date)] Bot execution completed" >> /var/log/twitter_bot.log 2>&1
+echo "[$(date)] Bot execution completed"
