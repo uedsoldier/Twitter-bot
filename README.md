@@ -34,7 +34,7 @@ Todo el proyecto se ejecuta dentro de un contenedor Debian slim con Python 3.13,
 
 ## ⏰ **Tareas programadas**
 
-4:00, 10:00, 16:00 y 22:00 (Hora de Ciudad de México): se publica un tweet.
+Cada hora del día se publica un tweet.
 
 Cada 30 minutos: el bot efectúa un healthcheck confirmar que sigue vivo.
 
