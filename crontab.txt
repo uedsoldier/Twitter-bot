@@ -1,2 +1,2 @@
-*/20 * * * * /bin/bash -l /app/run_bot.sh >> /var/log/twitter_bot.log 2>&1
+*/10 * * * * /bin/bash -l /app/run_bot.sh >> /var/log/twitter_bot.log 2>&1
 
