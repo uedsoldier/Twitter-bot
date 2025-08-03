@@ -28,10 +28,13 @@ class TwitterBot:
 
     def run(self): 
         days = self.event_tracker.compute_days_since_start()
-        message = self.phrase_manager.generate(days)
-        response = self.twitter_client.publish_tweet(message)
+        twitt = self.phrase_manager.generate(days)
+        twitt_with_hashtags = twitt + self.phrase_manager.hashtag
+        self.logger.info(f'Generated tweet: {twitt_with_hashtags}')
+        response = self.twitter_client.publish_tweet(twitt_with_hashtags)
 
         if 'error' in response:
             self.logger.error(f'Error publishing tweet: {response['error']}')
         else:
+            self.phrase_manager.add_phrase_to_used(twitt)
             self.logger.info(f'Published tweet: https://twitter.com/user/status/{response.data["id"]}')

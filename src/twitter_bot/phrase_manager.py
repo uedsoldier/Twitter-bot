@@ -21,8 +21,11 @@ class PhraseManager:
             available_phrases = phrases
         
         phrase = random.choice(available_phrases)
+        return phrase.format(dias=dias)
+    
+    def add_phrase_to_used(self, phrase: str):
         self.store.sadd(self.key_used, phrase)
-        return phrase.format(dias=dias) + self.hashtag
+
 
     def load_phrases(self, phrases: list):
         for phrase in phrases:
