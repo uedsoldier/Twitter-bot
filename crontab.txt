@@ -1,2 +1,2 @@
-*/10 * * * * /bin/bash -l /app/run_bot.sh
+0 */4 * * * /bin/bash -l /app/run_bot.sh
 
