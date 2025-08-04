@@ -30,7 +30,7 @@ RUN dos2unix /etc/cron.d/bot-cron && \
     crontab /etc/cron.d/bot-cron
 
 # Healthcheck docker
-HEALTHCHECK --interval=15m --timeout=10s --start-period=5s --retries=3 \
+HEALTHCHECK --interval=240m --timeout=10s --start-period=5s --retries=3 \
   CMD python3 /app/src/healthcheck.py || exit 1
 
 # Corre cron en primer plano
