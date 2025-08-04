@@ -24,7 +24,7 @@ def check_env():
 
     missing = []
 
-    logger.info('{HEALTHCHECK_STR} Verifying environment variables...')
+    logger.info(f'{HEALTHCHECK_STR} Verifying environment variables...')
 
     for var in required_vars:
         if not os.getenv(var):
@@ -40,18 +40,18 @@ def check_redis():
     try:
         redis_store = RedisStore()
         if redis_store.ping():
-            logger.info('{HEALTHCHECK_STR} ✅ Redis PING successful.')
+            logger.info(f'{HEALTHCHECK_STR} ✅ Redis PING successful.')
         else:
-            logger.error('{HEALTHCHECK_STR} ❌ Redis PING failed.')
+            logger.error(f'{HEALTHCHECK_STR} ❌ Redis PING failed.')
             sys.exit(1)
        
     except Exception as e:
         logger.error(f'{HEALTHCHECK_STR} ❌ Error connecting to Redis: {e}.')
         sys.exit(1)
-    logger.info('{HEALTHCHECK_STR} ✅ Redis connection is healthy.')
+    logger.info(f'{HEALTHCHECK_STR} ✅ Redis connection is healthy.')
 
 def check_twitter():
-    logger.info('{HEALTHCHECK_STR} Checking Twitter API connection...')
+    logger.info(f'{HEALTHCHECK_STR} Checking Twitter API connection...')
     try:
         twitter_client = TwitterClient(
             access_token=os.getenv('ACCESS_TOKEN'),
