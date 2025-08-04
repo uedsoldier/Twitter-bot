@@ -3,6 +3,9 @@ from twitter_bot.phrase_manager import PhraseManager
 from twitter_bot.twitter_client import TwitterClient
 from twitter_bot.event_tracker import EventTracker
 from twitter_bot.log_manager import LogManager
+from twitter_bot.responses import TweetResponse
+import tweepy
+import time
 
 from twitter_bot.config import (
     CONSUMER_KEY,
@@ -30,11 +33,28 @@ class TwitterBot:
         days = self.event_tracker.compute_days_since_start()
         twitt = self.phrase_manager.generate(days)
         twitt_with_hashtags = twitt + self.phrase_manager.hashtag
-        self.logger.info(f'Generated tweet: {twitt_with_hashtags}')
-        response = self.twitter_client.publish_tweet(twitt_with_hashtags)
+        self.logger.info(f'Generated tweet message: {twitt_with_hashtags}')
 
-        if 'error' in response:
-            self.logger.error(f'Error publishing tweet: {response['error']}')
-        else:
-            self.phrase_manager.add_phrase_to_used(twitt)
-            self.logger.info(f'Published tweet: https://twitter.com/user/status/{response.data["id"]}')
+        try:
+            response: TweetResponse = self.twitter_client.publish_tweet(twitt_with_hashtags)
+            if response.success:
+                self.phrase_manager.add_phrase_to_used(twitt)
+                self.logger.info(f'Published tweet: {response.url}')
+            else:
+                self.logger.error(f'Error publishing tweet: {response.error} (Status code: {response.status_code})')
+        except tweepy.TooManyRequests as e:
+            reset_timestamp = int(e.response.headers.get('x-rate-limit-reset', 0))
+            wait_minutes: int = int((reset_timestamp - time.time()) / 60)
+            self.logger.warning(f'Rate limit exceeded. Try again in {wait_minutes} minutes.')
+        
+        except tweepy.Unauthorized as e:
+            self.logger.error(f'Invalid Twitter API credentials: {e}')
+
+        except Exception as e:
+            self.logger.error(f'An unexpected error occurred: {e}')
+            
+        
+        
+
+       
+       

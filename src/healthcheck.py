@@ -4,6 +4,7 @@ from twitter_bot.redis_store import RedisStore
 from twitter_bot.twitter_client import TwitterClient
 from twitter_bot.log_manager import LogManager
 from dotenv import load_dotenv, dotenv_values
+from twitter_bot.responses import UserResponse
 
 HEALTHCHECK_STR = '[HealthCheck]'
 logger = LogManager.get_logger(__name__)
@@ -59,12 +60,13 @@ def check_twitter():
             consumer_key=os.getenv('CONSUMER_KEY'),
             consumer_secret=os.getenv('CONSUMER_SECRET')
         )
-        user_info = twitter_client.get_me()
-        if 'error' in user_info:
-            logger.error(f'{HEALTHCHECK_STR} ❌ Error getting user info: {user_info["error"]}')
-            sys.exit(1)
+        response: UserResponse = twitter_client.get_me()
+        if response.success:
+            logger.info(f'{HEALTHCHECK_STR} User info retrieved successfully: {response.user_data}')
         else:
-            logger.info(f'{HEALTHCHECK_STR} User info retrieved successfully: {user_info}')
+            logger.error(f'{HEALTHCHECK_STR} ❌ Error getting user info: {response.error} (Status code: {response.status_code})')
+            sys.exit(1)
+
         logger.info(f'{HEALTHCHECK_STR} ✅ Twitter API connection is healthy.')
     except Exception as e:
         logger.error(f'{HEALTHCHECK_STR} ❌ Error connecting to Twitter API: {e}.')
