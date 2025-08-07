@@ -1,2 +1,2 @@
-0 */4 * * * /bin/bash -l /app/run_bot.sh
+0 */4 * * * /bin/bash -l /app/run_bot.sh 2>/proc/1/fd/2 | tee -a /proc/1/fd/1
 
